@@ -2,10 +2,8 @@
 
 public class Health : MonoBehaviour
 {
-
-    public int health = 100;
-    public int mana = 50;
-    [SerializeField] private int exp = 0;
+    [SerializeField]
+    private int health, mana, exp = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
