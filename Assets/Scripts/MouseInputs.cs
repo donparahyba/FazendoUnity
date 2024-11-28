@@ -17,7 +17,7 @@ public class MouseInputs : MonoBehaviour
         if (Input.GetMouseButton(1))
         {
             Debug.Log("Mouse 1 - Clique Direito");
-            Debug.Log(Input.mousePosition);
+            Debug.Log(Input.mousePosition); 
             Debug.Log("World Point: " + Camera.main.ScreenToWorldPoint(Input.mousePosition));
             Debug.Log("Viewport Point: " + Camera.main.ScreenToViewportPoint(Input.mousePosition));
         }
