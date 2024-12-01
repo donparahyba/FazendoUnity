@@ -2,7 +2,7 @@
 
 public class Walking : MonoBehaviour
 {
-    [SerializeField] private float speed = 3f; // velocidade
+    [SerializeField] private float speed = 2f; // velocidade
     private Rigidbody2D body; // provem fisica
     private Vector2 axisMovement; // vetor de duas dimensoes
 

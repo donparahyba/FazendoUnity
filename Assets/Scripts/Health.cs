@@ -3,31 +3,57 @@
 public class Health : MonoBehaviour
 {
     [SerializeField]
-    private int health, mana, exp = 0;
+    private int health = 100;
+    private int MAX_HEALTH = 100;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        Debug.Log("Aperte para cima ou para baixo.");
-    }
-
-    // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Q)){
+            Damage(10);
+        }
+        if (Input.GetKeyDown(KeyCode.E)){ 
+            Heal(10);
+        }
 
-        if (health == 0)
+    }
+
+    public void Damage(int amount)
+    {
+        if(amount < 0)
         {
-            Debug.Log("Você morreu :/");
-            Time.timeScale = 0;
-            return;
+            throw new System.ArgumentOutOfRangeException("Não é possível dano negativo");
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+
+        this.health -= amount;
+
+        if (health <= 0)
         {
-            health += 10;
+            Die();
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+    }
+
+    public void Heal(int amount)
+    {
+        if (amount < 0)
         {
-            health -= 10;
+            throw new System.ArgumentOutOfRangeException("Não é possível cura negaiva");
         }
+
+        bool WouldBeOverMaxHealth = health + amount > MAX_HEALTH;
+
+        if (WouldBeOverMaxHealth)
+        {
+            this.health = MAX_HEALTH;
+        }
+        else
+        {
+            this.health += amount;
+        }
+    }
+
+    private void Die()
+    {
+        Debug.Log("Você Morreu :/");
+        Destroy(gameObject);
     }
 }
